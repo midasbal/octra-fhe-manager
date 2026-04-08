@@ -34,11 +34,43 @@ I successfully ported my branchless logic into **AppliedML**, Octra’s native f
 
 ```Encryption Testing: I used local FHE tools to encrypt integers into massive Base64 ciphertexts, proving the "Ciphertext Bloat" reality where a single bit becomes a 50KB+ string for security.```
 
-# Faucet Reality & Local Simulation
+# Live on Devnet: From Sandbox to Reality
 
-While my networking bridge and bytecode are production-ready, the official Octra Devnet Faucet has been **deprecated/discontinued.** Without the required **0.2 OCT** deployment fee, a public broadcast was not possible.
+Initially, this project was designed as a high-fidelity local sandbox due to network economics. However, after successfully securing funding (777 OCT) on the developer network, the sandbox evolved into a reality.
 
-However, this limitation became a feature. This project evolved into a high-fidelity **Local Sandbox.** It proves that a developer can build, compile, and mathematically verify a privacy-preserving dApp entirely in a local environment, ready for the moment the network economics open up.
+I successfully deployed the AppliedML contract to the live Octra Devnet. The network parsed my 217-byte branchless assembly and etched it onto the L1 ledger.
+
+##  Live Contract Details:
+
+Network: Octra Devnet (http://165.227.225.79:8080)
+
+Contract Address: oct73ttn5wmHgqNWynh1w4cQcuQSAc1QPJ48a86z7wmyiyw
+
+Execution: Fully Homomorphic Encrypted (FHE) Game of Life state evolution.
+
+# Proof of Execution (On-Chain Interaction)
+
+<img width="980" height="748" alt="prr" src="https://github.com/user-attachments/assets/613b8ce8-5330-4877-9c04-86b12da73c6b" />
+
+To demonstrate the contract's functionality, I performed a Fully Homomorphic Encrypted (FHE) call to the evolve method. This interaction represents a privacy-preserving state transition where the inputs stay encrypted throughout the entire lifecycle.
+
+Action: Triggering a "Cell Evolution" via Branchless Math.
+
+Method Called: evolve(pos, is_3, is_2)
+
+Transaction Hash: 5b8ffa765ab753a2901968875327fbc1d2007240b7753e
+
+Status: Confirmed
+
+## Technical Deep-Dive: Why it Matters
+
+Unlike traditional smart contracts (e.g., Solidity on Ethereum) where the node must see the data to process it, this contract operates on Ciphertext.
+
+Input: My local client encrypted the parameters [1, 1, 0] into a high-entropy noise string.
+
+Processing: The Octra Devnet node executed the branchless polynomial NextState = sum - prod without ever knowing if the cell was alive or dead.
+
+Result: The state was updated on-chain, proving that Confidential Computing is live and operational.
 
 # Setup & Execution
 
@@ -75,7 +107,7 @@ Paste into the ```Dev Tools``` section and hit ```Compile.```
 
 # What's Next?
 
-If this project were fully funded with OCT tokens, it would transition from a sandbox to a **Live Sentinel.** I envision a decentralized guardian that processes sensitive sensor data or game states across the Octra network, where the "truth" is computed but the "data" is never revealed.
+Now that the core logic is live on the Octra Devnet, the next phase is to evolve the **OctraSentinel** (the Python TUI) into a fully automated decentralized guardian. This "Sentinel" will monitor encrypted events from the contract address and autonomously compute next-generation game states without human intervention, maintaining absolute data privacy.
 
 ---
 
